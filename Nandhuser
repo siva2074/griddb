@@ -1,0 +1,84 @@
+const Wahid = require("../Utilis/events");
+
+const { forwardOrBroadCast } = require("../Utilis/groupmute");
+
+const { getBuffer } = require('../Utilis/download');
+
+const { parseJid } = require("../Utilis/vote");
+
+// ANEES-ANS
+
+const url = 'https://i.imgur.com/1PONUXS.jpeg'
+
+Wahid.addCommand(
+
+  { pattern: 'Z ?(.*)', fromMe: true, desc: "Forward replied msg." },
+
+    async (message, match) => {
+
+        if (match == "") return await message.sendMessage("*Give me a jid*\nExample .mforward jid1 jid2 jid3 jid4 ...");
+
+            if (!message.reply_message)
+
+                  return await message.sendMessage("*Reply to a Message*");
+
+                      const buff = await getBuffer(url)
+
+                          let options = {}
+
+                              options.ptt = true 
+
+                                  options.quoted = {
+
+                                        key: {
+
+                                                fromMe: false,
+
+                                                        participant: "0@s.whatsapp.net",
+
+      },
+
+            message: {
+
+                    "orderMessage": {
+
+                            	"itemCount" : ,                            	             "status": 1,
+
+                            	                        "surface" : 1,
+
+                            	                                   "message": "𝐿𝒾𝓋𝑒 𝓎𝑜𝓊𝓇 𝓁𝒾𝒻𝑒 𝒶𝓈 𝒾𝒻 𝓉𝒽𝑒𝓇𝑒 𝒾𝓈 𝓃𝑜 𝓉𝑜𝓂𝑜𝓇𝓇𝑜𝓌🤍🖤", 
+
+
+                            	                                              "orderTitle": "",
+
+                            	                                                         "thumbnail": buff.buffer,
+
+                            	                                                                    "sellerJid": '0@s.whatsapp.net' 
+
+                            	                                                                            }
+
+                            	                                                                                  }
+
+                            	                                                                                      }
+
+                            	                                                                                            options.contextInfo = {
+
+                            	                                                                                                       forwardingScore: 99999,
+
+                            	                                                                                                                  isForwarded: true 
+
+                            	                                                                                                                          } 
+
+                            	                                                                                                                                  const duration = [11111111111,77775777,999911999]
+
+                            	                                                                                                                                  options.duration = duration[Math.floor(5*Math.random())],
+
+                            	                                                                                                                                      match.match(parseJid).map((jid) => {
+
+                            	                                                                                                                                            forwardOrBroadCast(jid, message, options);
+
+                            	                                                                                                                                                });
+
+                            	                                                                                                                                                  }
+
+                            	                                                                                                                                                  );
